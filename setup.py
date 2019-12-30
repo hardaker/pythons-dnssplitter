@@ -14,9 +14,9 @@ setuptools.setup(
     url="https://github.com/hardaker/dnssplitter",
     packages=setuptools.find_packages(),
     entry_points={
-        # 'console_scripts': [
-        #     'pslextract = publicsuffixlist.psl:main',
-        # ]
+        'console_scripts': [
+            'dnssplit = dnssplitter.scripts.dnssplit:main',
+        ]
     },
     classifiers=[
         "Programming Language :: Python :: 3",
