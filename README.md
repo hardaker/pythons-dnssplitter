@@ -5,6 +5,22 @@ domain and it's registration point.
 
 # Usage
 
+## From the CLI
+
+```
+dnssplit www.google.co.uk www.yahoo.com
+www.google.co.uk:
+  Prefix:    www
+  Domain:    google.co.uk
+  Reg Point: co.uk
+www.yahoo.com:
+  Prefix:    www
+  Domain:    yahoo.com
+  Reg Point: com
+```
+
+## Using the API
+
 ``` python
 import dnssplitter
 splitter = dnssplitter.DNSSplitter()
