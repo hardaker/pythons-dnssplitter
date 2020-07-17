@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="dnssplitter",
-    version="1.0.0",
+    version="1.1.0",
     author="Wes Hardaker",
     author_email="opensource@hardakers.net",
     description="A fast python implementation of breaking down DNS domains into parts.",
