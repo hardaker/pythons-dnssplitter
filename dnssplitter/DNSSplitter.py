@@ -209,6 +209,39 @@ class DNSSplitter(object):
         self.init_tree(psl)
         return psl
 
+
+    def split_fsdb(self, inh, outh, keys):
+        """Accepts input streams, converts them to pyfsdb objects, and adds
+        new dns-split output keys based on input keys and sends the
+        results as a new FSDB file to the output handle.
+        """
+        import pyfsdb
+
+        inh = pyfsdb.Fsdb(file_handle=inh)
+        outh = pyfsdb.Fsdb(out_file_handle=outh)
+
+        outcols = list(inh.column_names)
+        for key in keys:
+            outcols.extend([key + '_prefix', key + '_domain', key + '_suffix'])
+        outh.column_names = outcols
+
+        key_cols = inh.get_column_numbers(keys)
+
+        for row in inh:
+            for key in key_cols:
+                name = row[key]
+                results = self.search_tree(name)
+
+                if results:
+                    row.extend(results)
+                else:
+                    row.extend(['','',''])
+
+            outh.append(row)
+
+        outh.close()
+        
+        
 def psl_sorter(a, b):
     if a == b:
         return 0

@@ -16,6 +16,7 @@ setuptools.setup(
     entry_points={
         'console_scripts': [
             'dnssplit = dnssplitter.scripts.dnssplit:main',
+            'dbdnssplit = dnssplitter.scripts.dbdnssplit:main',
         ]
     },
     classifiers=[
