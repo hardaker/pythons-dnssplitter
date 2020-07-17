@@ -1,4 +1,4 @@
-import argparse
+from argparse import ArgumentParser, FileType, ArgumentDefaultsHelpFormatter
 import sys
 import dnssplitter
 
@@ -10,7 +10,8 @@ def parse_args():
                             description=__doc__,
 	                        epilog="Exmaple Usage: ")
 
-    parser.add_argument("-k", "--name-keys", default="name", type=str, nargs="*",
+    parser.add_argument("-k", "--name-keys", default=["name"],
+                        type=str, nargs="*",
                         help="The dns key columns to split on.  The key will be a prefix in the output columns with _prefix, _domain_name and _suffix as output columns.")
 
     parser.add_argument("input_file", type=FileType('r'),
