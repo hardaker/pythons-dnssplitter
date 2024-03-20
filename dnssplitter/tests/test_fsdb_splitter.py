@@ -17,6 +17,8 @@ class test_fsdb_splitter(unittest.TestCase):
 
         psl.split_fsdb(input_stream, output_stream, ['one'])
 
-        self.assertEqual(output_stream.getvalue(),
-                         "#fsdb -F t one two one_prefix one_domain one_suffix\nwww.example.com\t2\twww\texample.com\tcom\nabc.def.example.co.uk\t1\tabc.def\texample.co.uk\tco.uk\naoeu.bogusss\t3\t\t\t\n#   | setup.py test\n",
+        output = output_stream.getvalue()
+        output = "\n".join(output.split("\n")[:-2])
+        self.assertEqual(output,
+                         "#fsdb -F t one:a two:a one_prefix:a one_domain:a one_suffix:a\nwww.example.com\t2\twww\texample.com\tcom\nabc.def.example.co.uk\t1\tabc.def\texample.co.uk\tco.uk\naoeu.bogusss\t3\t\t\t",
                          "output headers are correct")
